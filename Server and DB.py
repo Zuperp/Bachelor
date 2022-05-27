@@ -19,7 +19,7 @@ headache_count INTEGER)"""
 
 #Execute command to create table if it doens't exist
 cursor.execute(command3)
-
+connection.commit()
 #Create connection to "statistik banken" and get names of the counties and the population
 response_API = requests.get('https://api.statbank.dk/v1/data/BY2/JSONSTAT?KOMK=*') 
 data = response_API.text 
@@ -54,7 +54,7 @@ if(notPopulatedTable1 == []):
         zero = 0
         cursor.execute("""INSERT INTO County_pop_and_illness_table VALUES (?,?,?,?,?,?)""", (value, key, zero, zero, zero, zero,))
 
-
+connection.commit()
 
 #Create flask server and handle get/post
 from flask import Flask, request
@@ -67,7 +67,10 @@ def home():
     c = con.cursor()
 
     if(request.method == 'GET'):
-        return "Nice "
+        c.execute("SELECT * FROM County_pop_and_illness_table")
+        showTable = str(c.fetchall())
+        print("Showing Database")
+        return showTable
 
     if(request.method == 'POST'):
         received_data = request.json
@@ -91,9 +94,10 @@ def home():
             results = c.fetchall()
             print(results)
             print("Data received")
+            connection.commit()
         return "OK"
     
-
+connection.commit()
 #Host is defined by IP because development was done with an Emulator which has limits compared to a real phone
 if __name__ == '__main__':
     app.run(host='192.168.20.152')
