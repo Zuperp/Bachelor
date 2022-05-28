@@ -101,7 +101,7 @@ export default function SubmitPage() {
             )
       };
 
-       await fetch('http://192.168.20.152:5000/test', requestOptions)
+       await fetch('http://192.168.20.152:5000/server', requestOptions)
        .then(response => {
         return response.status
     })

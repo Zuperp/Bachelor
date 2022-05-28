@@ -61,7 +61,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/test', methods = ['GET', 'POST'])
+@app.route('/server', methods = ['GET', 'POST'])
 def home():
     con = sqlite3.connect('Illness_datacollect_collector.db')
     c = con.cursor()
