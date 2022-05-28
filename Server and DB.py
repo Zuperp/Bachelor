@@ -92,6 +92,7 @@ def home():
                 c.execute("UPDATE County_pop_and_illness_table SET headache_count = headache_count+1 WHERE county = ?", (first_value,))    
             c.execute("SELECT * FROM County_pop_and_illness_table WHERE county = ?", (first_value,))
             results = c.fetchall()
+            print("County | Population | Fever | Vomit | Runny nose | Headache")
             print(results)
             print("Data received")
             connection.commit()
