@@ -95,7 +95,7 @@ def home():
             print("County | Population | Fever | Vomit | Runny nose | Headache")
             print(results)
             print("Data received")
-            connection.commit()
+            con.commit()
         return "OK"
     
 connection.commit()
