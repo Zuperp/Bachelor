@@ -20,6 +20,7 @@ headache_count INTEGER)"""
 #Execute command to create table if it doens't exist
 cursor.execute(command3)
 connection.commit()
+
 #Create connection to "statistik banken" and get names of the counties and the population
 response_API = requests.get('https://api.statbank.dk/v1/data/BY2/JSONSTAT?KOMK=*') 
 data = response_API.text 
